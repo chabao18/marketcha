@@ -1,0 +1,5 @@
+spring:
+  config:
+    name: marketcha-app
+  profiles:
+    active: dev
