@@ -1,6 +1,6 @@
 # 命令执行 docker-compose -f docker-compose-environment-aliyun.yml up -d
 # docker 代理和使用文档；https://bugstack.cn/md/road-map/docker.html
-version: '3.9'
+# version: '3.9'
 services:
   mysql:
     image: mysql:8.0.32
@@ -37,6 +37,19 @@ services:
     depends_on:
       mysql:
         condition: service_healthy
+    networks:
+      - my-network
+
+  # Portainer
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    restart: always
+    ports:
+      - "9000:9000"  # Web UI access
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock  # To control Docker daemon
+      - ./portainer/data:/data
     networks:
       - my-network
 
