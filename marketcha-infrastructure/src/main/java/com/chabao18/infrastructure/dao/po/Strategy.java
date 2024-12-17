@@ -1,4 +1,4 @@
-package com.chabao18.infrastructure.persistent.po;
+package com.chabao18.infrastructure.dao.po;
 
 import lombok.Data;
 
@@ -9,6 +9,7 @@ public class Strategy {
     private String id;
     private String strategyId;
     private String strategyDesc;
+    private String ruleModels;
     private Date createTime;
     private Date updateTime;
 }
