@@ -41,6 +41,7 @@ services:
       - my-network
 
   # Portainer
+  # root - aA20019180@
   portainer:
     image: portainer/portainer-ce:latest
     container_name: portainer

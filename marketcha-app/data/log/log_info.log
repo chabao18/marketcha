@@ -125,3 +125,6 @@ Caused by: java.net.ConnectException: Connection refused (Connection refused)
 24-12-17.22:20:06.602 [main            ] INFO  AwardDaoTest           - awards: {"awardConfig":"1,100","awardDesc":"用户积分【优先透彻规则范围，如果没有则走配置】","awardId":101,"awardKey":"user_credit_random"}
 24-12-17.22:20:06.611 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 24-12-17.22:20:06.616 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+24-12-17.22:38:51.816 [main            ] INFO  ApiTest                - Starting ApiTest using Java 1.8.0_401 on mbp14pro.local with PID 96404 (started by tbag in /Users/tbag/MyHD/CodeField/xiaofuge/marketcha/marketcha-app)
+24-12-17.22:38:51.817 [main            ] INFO  ApiTest                - The following 1 profile is active: "dev"
+24-12-17.22:38:52.890 [main            ] INFO  ApiTest                - Started ApiTest in 1.283 seconds (JVM running for 1.671)
