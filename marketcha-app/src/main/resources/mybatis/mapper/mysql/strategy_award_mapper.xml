@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.chabao18.infrastructure.dao.IStrategyAwardDao">
+<mapper namespace="com.chabao18.infrastructure.persistent.dao.IStrategyAwardDao">
 
-    <resultMap id="dataMap" type="com.chabao18.infrastructure.dao.po.StrategyAward">
+    <resultMap id="dataMap" type="com.chabao18.infrastructure.persistent.po.StrategyAward">
         <id column="id" property="id"/>
         <result column="strategy_id" property="strategyId"/>
         <result column="award_id" property="awardId"/>
@@ -39,7 +39,7 @@
         order by sort asc
     </select>
 
-    <select id="queryStrategyAwardRuleModels" parameterType="com.chabao18.infrastructure.dao.po.StrategyAward"
+    <select id="queryStrategyAwardRuleModels" parameterType="com.chabao18.infrastructure.persistent.po.StrategyAward"
             resultType="java.lang.String">
         select rule_models
         from strategy_award
@@ -47,7 +47,7 @@
           and award_id = #{awardId}
     </select>
 
-    <update id="updateStrategyAwardStock" parameterType="com.chabao18.infrastructure.dao.po.StrategyAward">
+    <update id="updateStrategyAwardStock" parameterType="com.chabao18.infrastructure.persistent.po.StrategyAward">
         update strategy_award
         set award_count_surplus = award_count_surplus - 1
         where strategy_id = #{strategyId}
@@ -55,7 +55,7 @@
           and award_count_surplus > 0
     </update>
 
-    <select id="queryStrategyAward" parameterType="com.chabao18.infrastructure.dao.po.StrategyAward" resultMap="dataMap">
+    <select id="queryStrategyAward" parameterType="com.chabao18.infrastructure.persistent.po.StrategyAward" resultMap="dataMap">
         select strategy_id,
                award_id,
                award_title,

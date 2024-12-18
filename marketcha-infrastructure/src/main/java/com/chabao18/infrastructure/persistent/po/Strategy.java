@@ -1,4 +1,4 @@
-package com.chabao18.infrastructure.dao.po;
+package com.chabao18.infrastructure.persistent.po;
 
 import lombok.Data;
 

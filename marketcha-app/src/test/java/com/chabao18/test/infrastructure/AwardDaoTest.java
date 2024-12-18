@@ -1,8 +1,8 @@
 package com.chabao18.test.infrastructure;
 
 import com.alibaba.fastjson.JSON;
-import com.chabao18.infrastructure.dao.IAwardDao;
-import com.chabao18.infrastructure.dao.po.Award;
+import com.chabao18.infrastructure.persistent.dao.IAwardDao;
+import com.chabao18.infrastructure.persistent.po.Award;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

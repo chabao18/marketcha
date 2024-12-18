@@ -1,6 +1,6 @@
-package com.chabao18.infrastructure.dao;
+package com.chabao18.infrastructure.persistent.dao;
 
-import com.chabao18.infrastructure.dao.po.Strategy;
+import com.chabao18.infrastructure.persistent.po.Strategy;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
