@@ -34,3 +34,6 @@ build/
 ### Mac OS ###
 .DS_Store
 /docs/dev-ops/portainer/
+
+### logs
+/marketcha-app/data/log
