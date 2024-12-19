@@ -54,16 +54,18 @@ public class StrategyRepository implements IStrategyRepository {
         redisService.setValue(Constants.RedisKey.STRATEGY_RATE_RANGE_KEY + strategyId, rateRange);
 
         Map<Integer, Integer> cacheRateTable = redisService.getMap(Constants.RedisKey.STRATEGY_RATE_TABLE_KEY + strategyId);
+
+        // sync with redis
         cacheRateTable.putAll(shuffleStrategyAwardSearchRateTable);
     }
 
     @Override
     public Integer getStrategyAwardAssemble(Long strategyId, Integer rateKey) {
-        return redisService.getFromMap("Constants.RedisKey.STRATEGY_RATE_RANGE_KEY" + strategyId, rateKey);
+        return redisService.getFromMap(Constants.RedisKey.STRATEGY_RATE_TABLE_KEY + strategyId, rateKey);
     }
 
     @Override
     public int getRateRange(Long strategyId) {
-        return redisService.getValue("Constants.RedisKey.STRATEGY_RATE_RANGE_KEY" + strategyId);
+        return redisService.getValue(Constants.RedisKey.STRATEGY_RATE_RANGE_KEY + strategyId);
     }
 }

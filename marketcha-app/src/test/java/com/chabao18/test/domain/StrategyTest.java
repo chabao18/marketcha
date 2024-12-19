@@ -26,12 +26,23 @@ public class StrategyTest {
     @Resource
     private IStrategyArmory strategyArmory;
 
+
+    @Test
+    public void test_redis_sync() {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        map.put(1, 123);
+        map.put(2, 345);
+        Map<Integer, Integer> rmap = redisService.getMap("sync");
+        rmap.putAll(map);
+    }
+
+
     /**
      * 策略ID；100001L、100002L 装配的时候创建策略表写入到 Redis Map 中
      */
     @Test
     public void test_strategyArmory() {
-        boolean success = strategyArmory.assembleLotteryStrategy(100002L);
+        boolean success = strategyArmory.assembleLotteryStrategy(100001L);
         log.info("测试结果：{}", success);
     }
 
@@ -40,7 +51,7 @@ public class StrategyTest {
      */
     @Test
     public void test_getAssembleRandomVal() {
-        log.info("测试结果：{} - 奖品ID值", strategyArmory.getRandomAwardId(100002L));
+        log.info("测试结果：{} - 奖品ID值", strategyArmory.getRandomAwardId(100001L));
     }
 
     @Resource

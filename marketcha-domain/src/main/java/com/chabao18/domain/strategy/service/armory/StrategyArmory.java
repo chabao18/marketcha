@@ -40,7 +40,8 @@ public class StrategyArmory implements IStrategyArmory{
             BigDecimal awardRate = strategyAward.getAwardRate();
 
             // the range of awardRate for each award: (0, 1)
-            for (int i = 0; i < rateRange.multiply(awardRate).setScale(0, RoundingMode.CEILING).intValue(); i++) {
+            int awardRateNums = rateRange.multiply(awardRate).setScale(0, RoundingMode.CEILING).intValue();
+            for (int i = 0; i < awardRateNums; i++) {
                 strategyAwardSearchRateTable.add(awardId);
             }
         }
