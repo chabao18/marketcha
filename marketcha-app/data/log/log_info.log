@@ -14,3 +14,15 @@
 24-12-19.00:17:16.538 [main            ] INFO  AwardDaoTest           - awards: {"awardConfig":"1,100","awardDesc":"用户积分【优先透彻规则范围，如果没有则走配置】","awardId":101,"awardKey":"user_credit_random"}
 24-12-19.00:17:16.544 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown initiated...
 24-12-19.00:17:16.556 [SpringApplicationShutdownHook] INFO  HikariDataSource       - HikariPool-1 - Shutdown completed.
+24-12-19.22:05:48.110 [main            ] INFO  ApiTest                - Starting ApiTest using Java 1.8.0_401 on mbp14pro.local with PID 43458 (started by tbag in /Users/tbag/MyHD/CodeField/xiaofuge/marketcha/marketcha-app)
+24-12-19.22:05:48.111 [main            ] INFO  ApiTest                - The following 1 profile is active: "dev"
+24-12-19.22:05:48.589 [main            ] INFO  RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+24-12-19.22:05:48.591 [main            ] INFO  RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+24-12-19.22:05:48.605 [main            ] INFO  RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+24-12-19.22:05:49.179 [main            ] INFO  Version                - Redisson 3.23.4
+24-12-19.22:05:49.215 [main            ] WARN  DnsServerAddressStreamProviders - Can not find io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider in the classpath, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'
+24-12-19.22:05:49.346 [redisson-netty-2-4] INFO  MasterPubSubConnectionPool - 1 connections initialized for 127.0.0.1/127.0.0.1:16379
+24-12-19.22:05:49.360 [redisson-netty-2-13] INFO  MasterConnectionPool   - 5 connections initialized for 127.0.0.1/127.0.0.1:16379
+24-12-19.22:05:50.421 [main            ] INFO  EndpointLinksResolver  - Exposing 1 endpoint(s) beneath base path '/actuator'
+24-12-19.22:05:50.461 [main            ] INFO  ApiTest                - Started ApiTest in 2.567 seconds (JVM running for 3.059)
+24-12-19.22:05:50.733 [main            ] INFO  ApiTest                - test result: 101
