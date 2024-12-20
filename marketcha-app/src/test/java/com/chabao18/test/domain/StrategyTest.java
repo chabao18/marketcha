@@ -32,7 +32,7 @@ public class StrategyTest {
         HashMap<Integer, Integer> map = new HashMap<>();
         map.put(1, 123);
         map.put(2, 345);
-        Map<Integer, Integer> rmap = redisService.getMap("sync");
+        Map<Integer, Integer> rmap = redisService.getMap("test_sync_with_java");
         rmap.putAll(map);
     }
 
@@ -51,7 +51,18 @@ public class StrategyTest {
      */
     @Test
     public void test_getAssembleRandomVal() {
-        log.info("测试结果：{} - 奖品ID值", strategyArmory.getRandomAwardId(100001L));
+        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+        int iterations = 10000;
+        for (int i = 0; i < iterations; i++) {
+            Integer awardId = strategyArmory.getRandomAwardId(100001L);
+            treeMap.put(awardId, treeMap.getOrDefault(awardId, 0) + 1);
+        }
+
+
+        for (Map.Entry<Integer, Integer> entry : treeMap.entrySet()) {
+            log.info("ID: {} - Frequency: {}", entry.getKey(), entry.getValue());
+        }
+
     }
 
     @Resource
