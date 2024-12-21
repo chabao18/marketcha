@@ -1,7 +1,9 @@
 # TODO
 
-- 修改infras的目录结构
-- 每一节课程建立一个分支
+7.营销服务-5
 
+## simple notes
+### git 提交选项
 
-【5】营销服务-3
+### 策略装配
+从 marketcha_strategy_rate_table_key_{strategyId} 抽出奖品

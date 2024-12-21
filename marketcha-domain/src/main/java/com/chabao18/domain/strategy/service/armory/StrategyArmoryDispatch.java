@@ -15,6 +15,7 @@ import java.math.RoundingMode;
 import java.security.SecureRandom;
 import java.util.*;
 
+
 @Slf4j
 @Service
 public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatch{
@@ -28,7 +29,7 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
         List<StrategyAwardEntity> strategyAwardEntities = repository.queryStrategyAwardList(strategyId);
         assembleLotteryStrategy(String.valueOf(strategyId), strategyAwardEntities);
 
-        // rule-weight config
+        // rule-weight armory
         StrategyEntity strategyEntity = repository.queryStrategyEntityByStrategyId(strategyId);
         String ruleWeight = strategyEntity.getRuleWeight();
         if (ruleWeight == null) {

@@ -15,11 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import javax.annotation.Resource;
 import java.util.*;
 
-/**
- * @author Fuzhengwei bugstack.cn @小傅哥
- * @description 策略领域测试
- * @create 2023-12-23 11:33
- */
+
 @Slf4j
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -36,32 +32,16 @@ public class StrategyTest {
 
 
     @Test
-    public void test_redis_sync() {
-        HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(1, 123);
-        map.put(2, 345);
-        Map<Integer, Integer> rmap = redisService.getMap("test_sync_with_java");
-        rmap.putAll(map);
-    }
-
-    @Test
     public void test_initRedis() {
         redisService.deleteAllKeys();
     }
 
-
-    /**
-     * 策略ID；100001L、100002L 装配的时候创建策略表写入到 Redis Map 中
-     */
     @Test
     public void test_strategyArmory() {
         boolean success = strategyArmory.assembleLotteryStrategy(100001L);
         log.info("测试结果：{}", success);
     }
 
-    /**
-     * 从装配的策略中随机获取奖品ID值
-     */
     @Test
     public void test_getRandomAwardId() {
         TreeMap<Integer, Integer> treeMap = new TreeMap<>();
@@ -94,7 +74,6 @@ public class StrategyTest {
 
     }
 
-
     @Test
     public void test_map() {
         RMap<Integer, Integer> map = redisService.getMap("strategy_id_100001");
@@ -113,7 +92,7 @@ public class StrategyTest {
     }
 
     @Test
-    public void test_shuffle(){
+    public void test_shuffle() {
         Map<Integer, Integer> strategyAwardSearchRateTable = new HashMap<>();
         // 添加内容到Map中
         strategyAwardSearchRateTable.put(1, 10);
