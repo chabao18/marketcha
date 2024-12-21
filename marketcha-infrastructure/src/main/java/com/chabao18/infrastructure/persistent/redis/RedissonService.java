@@ -151,5 +151,10 @@ public class RedissonService implements IRedisService {
         return redissonClient.getBloomFilter(key);
     }
 
+    @Override
+    public void deleteAllKeys() {
+        redissonClient.getKeys().flushall();
+    }
+
 
 }

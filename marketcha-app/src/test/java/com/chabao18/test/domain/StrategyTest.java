@@ -2,8 +2,10 @@ package com.chabao18.test.domain;
 
 
 import com.chabao18.domain.strategy.service.armory.IStrategyArmory;
+import com.chabao18.domain.strategy.service.armory.IStrategyDispatch;
 import com.chabao18.infrastructure.persistent.redis.IRedisService;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.redisson.api.RMap;
@@ -26,6 +28,12 @@ public class StrategyTest {
     @Resource
     private IStrategyArmory strategyArmory;
 
+    @Resource
+    private IStrategyDispatch strategyDispatch;
+
+    @Resource
+    private IRedisService redisService;
+
 
     @Test
     public void test_redis_sync() {
@@ -34,6 +42,11 @@ public class StrategyTest {
         map.put(2, 345);
         Map<Integer, Integer> rmap = redisService.getMap("test_sync_with_java");
         rmap.putAll(map);
+    }
+
+    @Test
+    public void test_initRedis() {
+        redisService.deleteAllKeys();
     }
 
 
@@ -50,11 +63,11 @@ public class StrategyTest {
      * 从装配的策略中随机获取奖品ID值
      */
     @Test
-    public void test_getAssembleRandomVal() {
+    public void test_getRandomAwardId() {
         TreeMap<Integer, Integer> treeMap = new TreeMap<>();
         int iterations = 10000;
         for (int i = 0; i < iterations; i++) {
-            Integer awardId = strategyArmory.getRandomAwardId(100001L);
+            Integer awardId = strategyDispatch.getRandomAwardId(100001L);
             treeMap.put(awardId, treeMap.getOrDefault(awardId, 0) + 1);
         }
 
@@ -65,8 +78,22 @@ public class StrategyTest {
 
     }
 
-    @Resource
-    private IRedisService redisService;
+    @Test
+    public void test_getRandomAwardId_ruleWeight() {
+        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+        int iterations = 10000;
+        for (int i = 0; i < iterations; i++) {
+            Integer awardId = strategyDispatch.getRandomAwardId(100001L, "4000:102,103,104,105");
+            treeMap.put(awardId, treeMap.getOrDefault(awardId, 0) + 1);
+        }
+
+
+        for (Map.Entry<Integer, Integer> entry : treeMap.entrySet()) {
+            log.info(String.format("ID: {%d} - Freq: {%.2f}", entry.getKey(), (double) entry.getValue() / iterations));
+        }
+
+    }
+
 
     @Test
     public void test_map() {
