@@ -60,7 +60,7 @@ public class StrategyTest {
 
 
         for (Map.Entry<Integer, Integer> entry : treeMap.entrySet()) {
-            log.info("ID: {} - Frequency: {}", entry.getKey(), entry.getValue());
+            log.info(String.format("ID: {%d} - Freq: {%.4f}", entry.getKey(), (double) entry.getValue() / iterations));
         }
 
     }
