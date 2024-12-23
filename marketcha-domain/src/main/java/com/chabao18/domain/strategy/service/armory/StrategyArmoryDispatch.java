@@ -82,7 +82,6 @@ public class StrategyArmoryDispatch implements IStrategyArmory, IStrategyDispatc
             shuffleStrategyAwardSearchRateTable.put(i, strategyAwardSearchRateTables.get(i));
         }
 
-        // 7. 存放到 Redis
         repository.storeStrategyAwardSearchRateTable(key, shuffleStrategyAwardSearchRateTable.size(), shuffleStrategyAwardSearchRateTable);
     }
 
