@@ -1,5 +1,6 @@
 package com.chabao18.test.middleware;
 
+import com.chabao18.domain.strategy.model.entity.StrategyAwardEntity;
 import com.chabao18.infrastructure.persistent.redis.IRedisService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -39,5 +40,15 @@ public class RedisTest {
         map.put("gender", "female");
         rmap = redisService.getMap("test:teacher");
         rmap.putAll(map);
+    }
+
+    @Test
+    public void test_jsonSerialize() {
+        StrategyAwardEntity entity = new StrategyAwardEntity();
+        redisService.setValue("strategy:1", entity);
+
+        String cachedJson = redisService.getValue("strategy:1");
+        System.out.println(cachedJson);
+
     }
 }

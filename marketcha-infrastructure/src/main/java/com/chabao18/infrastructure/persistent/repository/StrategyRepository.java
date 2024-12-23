@@ -1,5 +1,8 @@
 package com.chabao18.infrastructure.persistent.repository;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.chabao18.domain.strategy.model.entity.StrategyAwardEntity;
 import com.chabao18.domain.strategy.model.entity.StrategyEntity;
 import com.chabao18.domain.strategy.model.entity.StrategyRuleEntity;
@@ -37,14 +40,15 @@ public class StrategyRepository implements IStrategyRepository {
     @Override
     public List<StrategyAwardEntity> queryStrategyAwardList(Long strategyId) {
         String cacheKey = Constants.RedisKey.STRATEGY_AWARD_KEY + strategyId;
-        List<StrategyAwardEntity> entities = redisService.getValue(cacheKey);
-        if (entities != null && !entities.isEmpty()) {
-            return entities;
+        List<StrategyAwardEntity> strategyAwardEntities = redisService.getListValue(cacheKey, StrategyAwardEntity.class);
+
+        if (strategyAwardEntities != null && !strategyAwardEntities.isEmpty()) {
+            return strategyAwardEntities;
         }
 
         // cache hit failed, query database
         List<StrategyAward> strategyAwards = strategyAwardDao.queryStrategyAwardListByStrategyId(strategyId);
-        entities = new ArrayList<>(strategyAwards.size());
+        strategyAwardEntities = new ArrayList<>(strategyAwards.size());
         for (StrategyAward strategyAward : strategyAwards) {
             StrategyAwardEntity entity = StrategyAwardEntity.builder()
                     .strategyId(strategyAward.getStrategyId())
@@ -53,10 +57,10 @@ public class StrategyRepository implements IStrategyRepository {
                     .awardCountSurplus(strategyAward.getAwardCountSurplus())
                     .awardRate(strategyAward.getAwardRate())
                     .build();
-            entities.add(entity);
+            strategyAwardEntities.add(entity);
         }
-        redisService.setValue(cacheKey, entities);
-        return entities;
+        redisService.setValue(cacheKey, strategyAwardEntities);
+        return strategyAwardEntities;
 
     }
 
@@ -89,8 +93,9 @@ public class StrategyRepository implements IStrategyRepository {
     @Override
     public StrategyEntity queryStrategyEntityByStrategyId(Long strategyId) {
         String cacheKey = Constants.RedisKey.STRATEGY_KEY + strategyId;
-        StrategyEntity strategyEntity = redisService.getValue(cacheKey);
-        if (null != strategyEntity) {
+        StrategyEntity strategyEntity = redisService.getValue(cacheKey, StrategyEntity.class);
+
+        if (strategyEntity != null) {
             return strategyEntity;
         }
         Strategy strategy = strategyDao.queryStrategyByStrategyId(strategyId);
@@ -117,5 +122,14 @@ public class StrategyRepository implements IStrategyRepository {
                 .ruleValue(strategyRuleRes.getRuleValue())
                 .ruleDesc(strategyRuleRes.getRuleDesc())
                 .build();
+    }
+
+    @Override
+    public String queryStrategyRuleValue(Long strategyId, Integer awardId, String ruleModel) {
+        StrategyRule strategyRule = new StrategyRule();
+        strategyRule.setStrategyId(strategyId);
+        strategyRule.setAwardId(awardId);
+        strategyRule.setRuleModel(ruleModel);
+        return strategyRuleDao.queryStrategyRuleValue(strategyRule);
     }
 }

@@ -2,6 +2,8 @@ package com.chabao18.infrastructure.persistent.redis;
 
 import org.redisson.api.*;
 
+import java.util.List;
+
 public interface IRedisService {
 
     /**
@@ -28,6 +30,10 @@ public interface IRedisService {
      * @return 值
      */
     <T> T getValue(String key);
+
+    // 当开启json编码时，读取数据需要：类型转换
+    <T> T getValue(String key, Class<T> clazz);
+    <T> List<T> getListValue(String key, Class<T> clazz);
 
     /**
      * 获取队列
