@@ -1,6 +1,7 @@
 # TODO
 
-9
+修正概率计算、完成lock策略、文档梳理流、修改redisClinet、对照源代码修改
+
 
 ## simple notes
 ### git 提交选项
